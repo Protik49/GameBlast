@@ -6,6 +6,8 @@ import AllBlogs from "../components/Blogs/AllBlogs/AllBlogs";
 import FeaturedBlogs from "../components/Blogs/FeaturedBlogs/FeaturedBlogs";
 import Wishlist from "../components/Blogs/Wishlist/Wishlist";
 import AddBlog from "../components/Blogs/AddBlog/AddBlog";
+import Login from "../components/login/Login";
+import Signup from "../components/Signup/Signup";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,8 @@ export const router = createBrowserRouter([
         element: <Wishlist />,
       },
       { path: "/add-blog", element: <AddBlog /> },
+      { path: "/login", element: <Login /> },
+      { path: "/signup", element: <Signup /> },
     ],
   },
 ]);
