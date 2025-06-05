@@ -3,8 +3,8 @@ import { Link } from "react-router";
 
 const Signup = () => {
   return (
-    <div className=" p-10 bg-[linear-gradient(90deg,_#1e3c72,_#2a5298)] ">
-      <section className="bg-white ">
+    <div className=" p-10 ">
+      <section className="bg-white shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
         <div className="grid grid-cols-1 rounded-2xl lg:grid-cols-2 ">
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
@@ -51,15 +51,6 @@ const Signup = () => {
                         {" "}
                         Password{" "}
                       </label>
-
-                      <a
-                        href="#"
-                        title=""
-                        className="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700"
-                      >
-                        {" "}
-                        Forgot password?{" "}
-                      </a>
                     </div>
                     <div className="mt-2.5">
                       <input
@@ -67,6 +58,25 @@ const Signup = () => {
                         name=""
                         id=""
                         placeholder="Enter your password"
+                        className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      for=""
+                      className="text-base font-medium text-gray-900"
+                    >
+                      {" "}
+                      Photo{" "}
+                    </label>
+                    <div className="mt-2.5">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        placeholder="Enter url of your photo"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>

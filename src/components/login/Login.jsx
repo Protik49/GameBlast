@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Login = () => {
   return (
-    <div className=" p-10 bg-[linear-gradient(90deg,_#1e3c72,_#2a5298)] ">
-      <section className="bg-white ">
+    <div className=" p-10  ">
+      <section className="bg-white shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
         <div className="grid grid-cols-1 rounded-2xl lg:grid-cols-2 ">
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
@@ -12,13 +13,12 @@ const Login = () => {
               </h2>
               <p className="mt-2 text-base text-gray-600">
                 Don’t have an account?{" "}
-                <a
-                  href="#"
-                  title=""
+                <Link
+                  to={"/signup"}
                   className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 hover:underline focus:text-blue-700"
                 >
                   Create a free account
-                </a>
+                </Link>
               </p>
 
               <form action="#" method="POST" className="mt-8">
@@ -51,15 +51,6 @@ const Login = () => {
                         {" "}
                         Password{" "}
                       </label>
-
-                      <a
-                        href="#"
-                        title=""
-                        className="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700"
-                      >
-                        {" "}
-                        Forgot password?{" "}
-                      </a>
                     </div>
                     <div className="mt-2.5">
                       <input
