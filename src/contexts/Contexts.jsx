@@ -1,5 +1,5 @@
 import React, { Children, useEffect, useState } from "react";
-import { ContextProvider } from "./ContextProvider";
+import { MyContext } from "./ContextProvider";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -13,7 +13,7 @@ import { auth } from "../firebase/firebase";
 
 const googleProvider = new GoogleAuthProvider();
 
-const Contexts = ({ chlidren }) => {
+const Contexts = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
@@ -35,9 +35,7 @@ const Contexts = ({ chlidren }) => {
   const signOutUser = () => {
     setLoading(true);
     return signOut(auth);
-    };
-    
-    
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -47,8 +45,6 @@ const Contexts = ({ chlidren }) => {
 
     return () => unsubscribe();
   }, []);
-    
-    
 
   const contextValues = {
     createUser,
@@ -60,7 +56,9 @@ const Contexts = ({ chlidren }) => {
     signOutUser,
   };
 
-  return <ContextProvider value={contextValues}>{chlidren}</ContextProvider>;
+  return (
+    <MyContext.Provider value={contextValues}>{children}</MyContext.Provider>
+  );
 };
 
 export default Contexts;

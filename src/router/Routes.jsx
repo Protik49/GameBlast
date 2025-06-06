@@ -8,6 +8,7 @@ import Wishlist from "../components/Blogs/Wishlist/Wishlist";
 import AddBlog from "../components/Blogs/AddBlog/AddBlog";
 import Login from "../components/login/Login";
 import Signup from "../components/Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -28,9 +29,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "/wishlist",
-        element: <Wishlist />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Wishlist />
+          </PrivateRoute>
+        ),
       },
-      { path: "/add-blog", element: <AddBlog /> },
+      {
+        path: "/add-blog",
+        element: (
+          <PrivateRoute>
+            <AddBlog />{" "}
+          </PrivateRoute>
+        ),
+      },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
     ],
