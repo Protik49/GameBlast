@@ -1,12 +1,85 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { MyContext } from "../../contexts/ContextProvider";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
+  const { createUser, signInWithGoogle } = useContext(MyContext);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const goTo = location.state || "/";
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photoURL = form.photoURL.value;
+
+    //validation
+    // 1. Password is less than 6 characters
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+
+    // 2. Password doesn't have a capital letter (Regex for uppercase)
+    const capitalLetterRegex = /[A-Z]/;
+    if (!capitalLetterRegex.test(password)) {
+      setError("Password must contain at least one capital letter.");
+      return;
+    }
+
+    // 3. Password doesn't have a special character (Regex for special characters)
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    if (!specialCharRegex.test(password)) {
+      setError("Password must contain at least one special character.");
+      return;
+    }
+
+    // 4. Password doesn't have a numeric character (Regex for numbers)
+    const numberRegex = /\d/;
+    if (!numberRegex.test(password)) {
+      setError("Password must contain at least one numeric character.");
+      return;
+    }
+
+    //when login button clicked
+
+    createUser(email, password)
+      .then((userDetails) => {
+        const user = userDetails.user;
+
+        return updateProfile(user, {
+          photoURL: photoURL,
+        });
+      })
+      .then(() => {
+        navigate(goTo);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  //when Google Sign up is clicked
+  const handleGoogleSignUp = () => {
+    signInWithGoogle()
+      .then((result) => {
+        navigate(goTo);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div className=" p-10 ">
       <section className="bg-white shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
         <div className="grid grid-cols-1 rounded-2xl lg:grid-cols-2 ">
-          <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+          <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-18">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
                 Sign Up
@@ -21,7 +94,12 @@ const Signup = () => {
                 </Link>
               </p>
 
-              <form action="#" method="POST" className="mt-8">
+              <form
+                onSubmit={handleSignup}
+                action="#"
+                method="POST"
+                className="mt-8"
+              >
                 <div className="space-y-5">
                   <div>
                     <label
@@ -34,7 +112,7 @@ const Signup = () => {
                     <div className="mt-2.5">
                       <input
                         type="email"
-                        name=""
+                        name="email"
                         id=""
                         placeholder="Enter email to get started"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
@@ -55,7 +133,7 @@ const Signup = () => {
                     <div className="mt-2.5">
                       <input
                         type="password"
-                        name=""
+                        name="password"
                         id=""
                         placeholder="Enter your password"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
@@ -74,7 +152,7 @@ const Signup = () => {
                     <div className="mt-2.5">
                       <input
                         type="text"
-                        name=""
+                        name="photoURL"
                         id=""
                         placeholder="Enter url of your photo"
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
@@ -89,6 +167,7 @@ const Signup = () => {
                     >
                       Sign Up
                     </button>
+                    {error && <p className="text-red-600 my-4">{error}</p>}
                   </div>
                 </div>
               </form>
@@ -96,6 +175,7 @@ const Signup = () => {
               <div className="mt-3 space-y-3">
                 <button
                   type="button"
+                  onClick={handleGoogleSignUp}
                   className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
                   <div className="absolute inset-y-0 left-0 p-4">
@@ -109,23 +189,6 @@ const Signup = () => {
                     </svg>
                   </div>
                   Sign up with Google
-                </button>
-
-                <button
-                  type="button"
-                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
-                >
-                  <div className="absolute inset-y-0 left-0 p-4">
-                    <svg
-                      className="w-6 h-6 text-[#2563EB]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
-                    </svg>
-                  </div>
-                  Sign up with Facebook
                 </button>
               </div>
             </div>

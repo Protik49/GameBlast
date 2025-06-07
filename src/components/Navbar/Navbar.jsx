@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { MyContext } from "../../contexts/ContextProvider";
+import { PuffLoader } from "react-spinners";
 
 const Navbar = () => {
+  const { user, signOutUser, loading } = useContext(MyContext);
+
+  const handleLogout = () => {
+    signOutUser();
+  };
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm ">
@@ -59,12 +67,31 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to={"/login"} className="btn">
-            Login
-          </Link>
-          <Link to={"/signup"} className="text-blue-600">
-            Sign Up
-          </Link>
+          {loading ? (
+            <PuffLoader color="orange" size={40}></PuffLoader>
+          ) : user ? (
+            <div className=" flex gap-4 justify-center items-center">
+              <button className="btn rounded-full border border-black text-gray-750 bg-orange-400 font-bold hover:bg-white hover:border hover:text-orange-400 hover:border-orange-400" onClick={handleLogout}>
+                Logout
+              </button>
+              <div className="w-10 ">
+                <img
+                  className="rounded-full border-3 border-orange-400"
+                  alt="Profile pic"
+                  src={user?.photoURL}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="space-x-4">
+              <Link to={"/login"} className="btn">
+                Login
+              </Link>
+              <Link to={"/signup"} className="text-blue-600">
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

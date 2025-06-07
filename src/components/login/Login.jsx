@@ -38,10 +38,10 @@ const Login = () => {
     <div className=" p-10  ">
       <section className="bg-white shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
         <div className="grid grid-cols-1 rounded-2xl lg:grid-cols-2 ">
-          <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+          <div className="flex items-center justify-center px-4 py-6 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
-                Sign in to Celebration
+                Sign in Explore
               </h2>
               <p className="mt-2 text-base text-gray-600">
                 Don’t have an account?{" "}
@@ -107,6 +107,7 @@ const Login = () => {
                     >
                       Log in
                     </button>
+                    {error && <p className="text-red-600 my-4">{error}</p>}
                   </div>
                 </div>
               </form>
