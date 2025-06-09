@@ -71,7 +71,10 @@ const Navbar = () => {
             <PuffLoader color="orange" size={40}></PuffLoader>
           ) : user ? (
             <div className=" flex gap-4 justify-center items-center">
-              <button className="btn rounded-full border border-black text-gray-750 bg-orange-400 font-bold hover:bg-white hover:border hover:text-orange-400 hover:border-orange-400" onClick={handleLogout}>
+              <button
+                className="btn rounded-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] border hover:border-black hover:text-black hover:bg-orange-400 font-bold bg-white  text-orange-400 border-orange-400"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
               <div className="w-10 ">
