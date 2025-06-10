@@ -37,11 +37,19 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Item 1</a>
+                <NavLink to={"/"}>Home</NavLink>
               </li>
-
               <li>
-                <a>Item 3</a>
+                <NavLink to={"/all-blogs"}>All Blogs</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/add-blog"}>Add Blog</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/featured-blogs"}>Featured Blogs</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/wishlist"}>Wishlist</NavLink>
               </li>
             </ul>
           </div>
@@ -72,14 +80,14 @@ const Navbar = () => {
           ) : user ? (
             <div className=" flex gap-4 justify-center items-center">
               <button
-                className="btn rounded-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] border hover:border-black hover:text-black hover:bg-orange-400 font-bold bg-white  text-orange-400 border-orange-400"
+                className="btn rounded-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] border hover:border-black hover:text-black hover:bg-orange-400 font-bold bg-white  text-orange-500 border-orange-500"
                 onClick={handleLogout}
               >
                 Logout
               </button>
               <div className="w-10 ">
                 <img
-                  className="rounded-full border-3 border-orange-400"
+                  className="rounded-full border-3 border-orange-500"
                   alt="Profile pic"
                   src={user?.photoURL}
                 />

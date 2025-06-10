@@ -17,6 +17,7 @@ const Signup = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photoURL = form.photoURL.value;
+    const name = form.name.value
 
     //validation
     // 1. Password is less than 6 characters
@@ -54,6 +55,7 @@ const Signup = () => {
 
         return updateProfile(user, {
           photoURL: photoURL,
+          displayName: name
         });
       })
       .then(() => {
@@ -107,6 +109,24 @@ const Signup = () => {
                       className="text-base font-medium text-gray-900"
                     >
                       {" "}
+                      Name{" "}
+                    </label>
+                    <div className="mt-2.5">
+                      <input
+                        type="text"
+                        name="name"
+                        id=""
+                        placeholder="Enter your full name "
+                        className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      for=""
+                      className="text-base font-medium text-gray-900"
+                    >
+                      {" "}
                       Email address{" "}
                     </label>
                     <div className="mt-2.5">
@@ -114,7 +134,7 @@ const Signup = () => {
                         type="email"
                         name="email"
                         id=""
-                        placeholder="Enter email to get started"
+                        placeholder="Enter email "
                         className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>

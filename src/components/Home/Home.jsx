@@ -2,6 +2,8 @@ import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
 
 const Home = () => {
+
+  
   return (
     <div>
       <div className="relative py-20 px-6 text-white overflow-hidden">

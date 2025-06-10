@@ -9,6 +9,7 @@ import AddBlog from "../components/Blogs/AddBlog/AddBlog";
 import Login from "../components/login/Login";
 import Signup from "../components/Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
+import BlogDetail from "../components/BlogDetail/BlogDetail";
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
       },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
-      
+      { path: "/blog/:id", element: <BlogDetail /> },
     ],
   },
 ]);
