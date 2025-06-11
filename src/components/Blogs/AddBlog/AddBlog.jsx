@@ -24,7 +24,7 @@ const AddBlog = () => {
 
     const email = user?.email;
     const name = user?.displayName;
-    //const photo = user?.photoURL;
+    const photo = user?.photoURL;
 
     const blogData = {
       title,
@@ -34,6 +34,7 @@ const AddBlog = () => {
       email,
       name,
       today,
+      photo
       
     };
 

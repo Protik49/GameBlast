@@ -9,7 +9,7 @@ import AddBlog from "../components/Blogs/AddBlog/AddBlog";
 import Login from "../components/login/Login";
 import Signup from "../components/Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
-import BlogDetail from "../components/BlogDetail/BlogDetail";
+import BlogDetail from "../components/Blogs/BlogDetail/BlogDetail";
 
 export const router = createBrowserRouter([
   {
