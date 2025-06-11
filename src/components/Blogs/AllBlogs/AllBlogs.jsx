@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SingleNewsCard from "../../NewsCard/SingleNewsCard";
 import axios from "axios";
+import SingleNewsCard from "../../NewsCard/SingleNewsCard";
 import Loading from "../../Loading/Loading";
-
-
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -11,6 +9,7 @@ const AllBlogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // Fetch blogs on mount
   useEffect(() => {
     setLoading(true);
     axios("http://localhost:3000/blogs")
@@ -20,72 +19,67 @@ const AllBlogs = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log("Fetch error:", err.message);
+        console.error("Error fetching blogs:", err.message);
         setLoading(false);
       });
   }, []);
 
+  // Filter blogs by search
   useEffect(() => {
-    if (searchTerm === "") {
+    if (!searchTerm.trim()) {
       setFilteredBlogs(blogs);
     } else {
-      setFilteredBlogs(
-        blogs.filter((blog) =>
-          blog.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+      const keyword = searchTerm.toLowerCase();
+      const filtered = blogs.filter((blog) =>
+        blog.title.toLowerCase().includes(keyword)
       );
+      setFilteredBlogs(filtered);
     }
   }, [searchTerm, blogs]);
 
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
-    <div>
-      <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
-        <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex items-end justify-between">
-            <div className=" w-11/12 mx-auto ">
-              <p className="text-3xl font-bold text-center">
-                Explore the latest in Gaming
-              </p>
-              <div className="flex justify-center gap-4 flex-col sm:flex-row mt-5">
-                <input
-                  type="text"
-                  placeholder="Enter title.."
-                  value={searchTerm}
-                  onChange={handleInputChange}
-                  name="search"
-                  className="bg-white text-black px-4 py-2 rounded-lg w-full sm:w-auto border border-orange-300"
-                />
+    <section className="py-12 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <header className="text-center mb-10">
+          <h1 className="text-4xl font-extrabold text-gray-900">
+            Stay Ahead in Tech & Gaming
+          </h1>
+          <p className="mt-4 text-gray-600 text-lg">
+            Dive into expert insights, breaking industry news, and deep dives on
+            emerging trends.
+          </p>
+        </header>
 
-                <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-semibold">
-                  Search
-                </button>
-              </div>
-            </div>
-            <div>{/* For Showing Dynamic iconon the right side */}</div>
-          </div>
-
-          <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
-            {loading ? (
-              <div className="col-span-full flex justify-center items-center h-40">
-                <Loading />
-              </div>
-            ) : filteredBlogs.length > 0 ? (
-              filteredBlogs.map((blog, index) => (
-                <SingleNewsCard key={index} blog={blog} />
-              ))
-            ) : (
-              <p className="text-center text-gray-600 col-span-full">
-                No matching blogs found.
-              </p>
-            )}
-          </div>
+        {/* Search Bar */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search blog titles, e.g. 'AI in Gaming'"
+            className="w-full sm:w-1/2 px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-orange-500 focus:border-orange-500"
+          />
         </div>
-      </section>
-    </div>
+
+        {/* Blog Cards or Loading/Error States */}
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {loading ? (
+            <div className="col-span-full flex justify-center items-center h-48">
+              <Loading />
+            </div>
+          ) : filteredBlogs.length > 0 ? (
+            filteredBlogs.map((blog, index) => (
+              <SingleNewsCard key={index} blog={blog} />
+            ))
+          ) : (
+            <div className="col-span-full text-center text-gray-600 text-lg">
+              No blog posts found matching your search.
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 
