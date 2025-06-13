@@ -74,7 +74,7 @@ const AllBlogs = () => {
             ))
           ) : (
             <div className="col-span-full text-center text-gray-600 text-lg">
-              No blog posts found matching your search.
+              No blog posts found.
             </div>
           )}
         </div>
