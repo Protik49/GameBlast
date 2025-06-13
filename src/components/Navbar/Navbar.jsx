@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router"; // ensure this is react-router-dom
 import { MyContext } from "../../contexts/ContextProvider";
 import { PuffLoader } from "react-spinners";
 
@@ -12,7 +12,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm ">
+      <div className="navbar bg-base-100 shadow-sm">
+        {/* Navbar start */}
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -23,18 +24,17 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <NavLink to={"/"}>Home</NavLink>
@@ -55,6 +55,8 @@ const Navbar = () => {
           </div>
           <a className="btn btn-ghost text-xl">GameBlast</a>
         </div>
+
+        {/* Navbar center */}
         <div className="navbar-center font-medium hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
@@ -74,24 +76,44 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+
+        {/* Navbar end */}
         <div className="navbar-end">
           {loading ? (
-            <PuffLoader color="orange" size={40}></PuffLoader>
+            <PuffLoader color="orange" size={40} />
           ) : user ? (
-            <div className=" flex gap-4 justify-center items-center">
-              <button
-                className="btn rounded-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] border hover:border-black hover:text-black hover:bg-orange-400 font-bold bg-white  text-orange-500 border-orange-500"
-                onClick={handleLogout}
+            <div className="dropdown dropdown-end">
+              {/* Profile picture as dropdown toggle */}
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full border-2 border-orange-500">
+                  <img src={user?.photoURL} alt="Profile" />
+                </div>
+              </label>
+              {/* Dropdown menu */}
+              <ul
+                tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-56"
               >
-                Logout
-              </button>
-              <div className="w-10 ">
-                <img
-                  className="rounded-full border-3 border-orange-500"
-                  alt="Profile pic"
-                  src={user?.photoURL}
-                />
-              </div>
+                <li className="cursor-default px-4 py-2">
+                  <div className="font-semibold">
+                    {user?.displayName || "User"}
+                  </div>
+                  <div className="text-xs opacity-70">{user?.email}</div>
+                </li>
+                <li>
+                  <Link to="/my-blogs" className="justify-between">
+                    My Blogs
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="text-red-600 hover:text-red-700"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </div>
           ) : (
             <div className="space-x-4">
