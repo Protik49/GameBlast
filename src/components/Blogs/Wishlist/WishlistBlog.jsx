@@ -1,17 +1,14 @@
 import axios from "axios";
 import { useContext } from "react";
 import { Link } from "react-router";
-import { MyContext } from "../../contexts/ContextProvider";
 import Swal from "sweetalert2";
+import { MyContext } from "../../../contexts/ContextProvider";
 
-const SingleNewsCard = ({ blog }) => {
+
+const WishlistBlog = ({ blog }) => {
   const { user } = useContext(MyContext);
 
-  const isOwnBlog = user?.email === blog?.authorEmail;
-
   const handleBookmark = () => {
-    if (isOwnBlog) return; // Prevent execution entirely
-
     axios
       .post(`http://localhost:3000/wishlist`, {
         newsID: blog?._id,
@@ -60,18 +57,9 @@ const SingleNewsCard = ({ blog }) => {
             {blog.category}
           </span>
           <button
-            title={
-              isOwnBlog
-                ? "You cannot bookmark your own blog"
-                : "Add to wishlist"
-            }
+            title="Bookmark"
             onClick={handleBookmark}
-            disabled={isOwnBlog}
-            className={`${
-              isOwnBlog
-                ? "cursor-not-allowed opacity-50"
-                : "cursor-pointer hover:text-orange-500"
-            } text-orange-400 transition`}
+            className="text-orange-400 cursor-pointer hover:text-orange-500 transition"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M5 3a2 2 0 00-2 2v14l7-4 7 4V5a2 2 0 00-2-2H5z" />
@@ -94,4 +82,4 @@ const SingleNewsCard = ({ blog }) => {
   );
 };
 
-export default SingleNewsCard;
+export default WishlistBlog;

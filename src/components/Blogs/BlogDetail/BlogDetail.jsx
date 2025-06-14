@@ -1,14 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Loading from "../../Loading/Loading";
+import { MyContext } from "../../../contexts/ContextProvider";
 
 const BlogDetail = () => {
   const [blog, setBlog] = useState(null);
   const [allComments, setAllComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const {user} = useContext(MyContext)
   const { id } = useParams();
+
 
   const fetchComments = async () => {
     try {
@@ -120,46 +123,54 @@ const BlogDetail = () => {
               </div>
             )}
 
+            
             {/* Comment Form */}
-            <div className="mt-10 bg-white p-6 rounded-xl shadow-lg border">
-              <h3 className="text-xl font-semibold mb-4 text-gray-700">
-                💬 Leave a Comment
-              </h3>
-              <form onSubmit={handleComment} className="space-y-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5722]"
-                  required
-                />
-                <textarea
-                  name="comment"
-                  rows="4"
-                  placeholder="Your comment"
-                  className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5722]"
-                  required
-                ></textarea>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-[#FF5722] hover:bg-[#e64a19] text-white px-6 py-3 rounded-lg transition-all font-medium disabled:opacity-60"
-                >
-                  {isSubmitting ? "Posting..." : "Post Comment"}
-                </button>
-                {message && (
-                  <p
-                    className={`text-sm mt-2 ${
-                      message.startsWith("✅")
-                        ? "text-green-600"
-                        : "text-red-500"
-                    }`}
+            {user?.email === blog?.authorEmail ? (
+              <div className="mt-10 bg-orange-100 text-orange-700 p-6 rounded-xl border border-orange-300">
+                🙅‍♂️ Authors cannot comment on their own blog post.
+              </div>
+            ) : (
+              <div className="mt-10 bg-white p-6 rounded-xl shadow-lg border">
+                <h3 className="text-xl font-semibold mb-4 text-gray-700">
+                  💬 Leave a Comment
+                </h3>
+                <form onSubmit={handleComment} className="space-y-4">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    defaultValue={user?.displayName}
+                    className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5722]"
+                    required
+                  />
+                  <textarea
+                    name="comment"
+                    rows="4"
+                    placeholder="Your comment"
+                    className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5722]"
+                    required
+                  ></textarea>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-[#FF5722] hover:bg-[#e64a19] text-white px-6 py-3 rounded-lg transition-all font-medium disabled:opacity-60"
                   >
-                    {message}
-                  </p>
-                )}
-              </form>
-            </div>
+                    {isSubmitting ? "Posting..." : "Post Comment"}
+                  </button>
+                  {message && (
+                    <p
+                      className={`text-sm mt-2 ${
+                        message.startsWith("✅")
+                          ? "text-green-600"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {message}
+                    </p>
+                  )}
+                </form>
+              </div>
+            )}
           </div>
         </div>
       ) : (

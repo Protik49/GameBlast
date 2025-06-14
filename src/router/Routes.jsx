@@ -50,8 +50,15 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
       { path: "/blog/:id", element: <BlogDetail /> },
-      
-      { path: "/my-blogs", element: <Myblogs /> },
+
+      {
+        path: "/my-blogs",
+        element: (
+          <PrivateRoute>
+            <Myblogs />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
