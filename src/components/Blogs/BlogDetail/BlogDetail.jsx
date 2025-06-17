@@ -9,13 +9,14 @@ const BlogDetail = () => {
   const [allComments, setAllComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
-  const {user} = useContext(MyContext)
+  const { user } = useContext(MyContext);
   const { id } = useParams();
-
 
   const fetchComments = async () => {
     try {
-      const res = await axios(`http://localhost:3000/comments/${id}`);
+      const res = await axios(
+        `https://game-blast-server.vercel.app/comments/${id}`
+      );
       setAllComments(res.data);
     } catch (err) {
       console.log("Comment loading error:", err.message);
@@ -23,7 +24,7 @@ const BlogDetail = () => {
   };
 
   useEffect(() => {
-    axios(`http://localhost:3000/blog/${id}`)
+    axios(`https://game-blast-server.vercel.app/blog/${id}`)
       .then((res) => setBlog(res.data))
       .catch((err) => console.log("Blog loading error:", err.message));
 
@@ -46,7 +47,7 @@ const BlogDetail = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/addcomment", {
+      await axios.post("https://game-blast-server.vercel.app/addcomment", {
         name,
         comment,
         blogId: id,
@@ -123,7 +124,6 @@ const BlogDetail = () => {
               </div>
             )}
 
-            
             {/* Comment Form */}
             {user?.email === blog?.authorEmail ? (
               <div className="mt-10 bg-orange-100 text-orange-700 p-6 rounded-xl border border-orange-300">

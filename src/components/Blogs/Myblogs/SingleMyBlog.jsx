@@ -28,7 +28,7 @@ const SingleMyBlog = ({ blog }) => {
     if (isOwnBlog) return;
 
     axios
-      .post(`http://localhost:3000/wishlist`, {
+      .post(`https://game-blast-server.vercel.app/wishlist`, {
         newsID: localBlog._id,
         userEmail: user?.email,
       })
@@ -66,7 +66,10 @@ const SingleMyBlog = ({ blog }) => {
     }
 
     axios
-      .put(`http://localhost:3000/blog/${localBlog._id}`, updatedData)
+      .put(
+        `https://game-blast-server.vercel.app/blog/${localBlog._id}`,
+        updatedData
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire("Success", "Blog updated successfully!", "success");
@@ -174,6 +177,26 @@ const SingleMyBlog = ({ blog }) => {
               }
             />
 
+            <label htmlFor="category" className="block mb-1 font-semibold">
+              Category
+            </label>
+            <select
+              id="category"
+              required
+              className="w-full p-3 border border-gray-300 rounded mb-4"
+              value={updatedData.category}
+              onChange={(e) =>
+                setUpdatedData({ ...updatedData, category: e.target.value })
+              }
+            >
+              <option value="PC Gaming">PC Gaming</option>
+              <option value="How-To">How-To</option>
+              <option value="PlayStation">PlayStation</option>
+              <option value="eSports">eSports</option>
+              <option value="Mobile Gaming">Mobile Gaming</option>
+              <option value="Other">Other</option>
+            </select>
+
             <label htmlFor="content" className="block mb-1 font-semibold">
               Content
             </label>
@@ -187,27 +210,6 @@ const SingleMyBlog = ({ blog }) => {
                 setUpdatedData({ ...updatedData, content: e.target.value })
               }
             />
-
-            <label htmlFor="category" className="block mb-1 font-semibold">
-              Category
-            </label>
-            <select
-              id="category"
-              required
-              className="w-full p-3 border border-gray-300 rounded mb-4"
-              value={updatedData.category}
-              onChange={(e) =>
-                setUpdatedData({ ...updatedData, category: e.target.value })
-              }
-            >
-              
-              <option value="PC Gaming">PC Gaming</option>
-              <option value="How-To">How-To</option>
-              <option value="PlayStation">PlayStation</option>
-              <option value="eSports">eSports</option>
-              <option value="Mobile Gaming">Mobile Gaming</option>
-              <option value="Other">Other</option>
-            </select>
 
             <div className="flex justify-end gap-2">
               <button

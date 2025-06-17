@@ -4,13 +4,12 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../contexts/ContextProvider";
 
-
 const WishlistBlog = ({ blog }) => {
   const { user } = useContext(MyContext);
 
   const handleBookmark = () => {
     axios
-      .post(`http://localhost:3000/wishlist`, {
+      .post(`https://game-blast-server.vercel.app/wishlist`, {
         newsID: blog?._id,
         userEmail: user?.email,
       })

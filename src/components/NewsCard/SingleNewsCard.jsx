@@ -13,7 +13,7 @@ const SingleNewsCard = ({ blog }) => {
     if (isOwnBlog) return; // Prevent execution entirely
 
     axios
-      .post(`http://localhost:3000/wishlist`, {
+      .post(`https://game-blast-server.vercel.app/wishlist`, {
         newsID: blog?._id,
         userEmail: user?.email,
       })

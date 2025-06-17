@@ -14,7 +14,7 @@ const FeaturedBlogs = () => {
   const [sorting, setSorting] = useState([]);
 
   useEffect(() => {
-    axios("http://localhost:3000/featured-blogs").then((res) =>
+    axios("https://game-blast-server.vercel.app/featured-blogs").then((res) =>
       setData(res.data)
     );
   }, []);

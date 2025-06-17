@@ -12,7 +12,7 @@ const AllBlogs = () => {
   // Fetch blogs on mount
   useEffect(() => {
     setLoading(true);
-    axios("http://localhost:3000/blogs")
+    axios("https://game-blast-server.vercel.app/blogs")
       .then((res) => {
         setBlogs(res.data);
         setFilteredBlogs(res.data);

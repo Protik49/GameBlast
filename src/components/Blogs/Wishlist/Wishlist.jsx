@@ -9,7 +9,7 @@ const Wishlist = () => {
   const [blogs, setBlog] = useState([]);
 
   useEffect(() => {
-    axios(`http://localhost:3000/wishlist/${user?.email}`)
+    axios(`https://game-blast-server.vercel.app/wishlist/${user?.email}`)
       .then((res) => {
         setBlog(res.data);
         console.log(res.data);

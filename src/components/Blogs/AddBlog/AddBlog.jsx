@@ -34,24 +34,23 @@ const AddBlog = () => {
       email,
       name,
       today,
-      photo
-      
+      photo,
     };
 
-      axios.post("http://localhost:3000/add-blog", blogData).then((data) => {
-        
-        
-      if (data?.data?.insertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your blog has been published!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        form.reset();
-      }
-    });
+    axios
+      .post("https://game-blast-server.vercel.app/add-blog", blogData)
+      .then((data) => {
+        if (data?.data?.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your blog has been published!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset();
+        }
+      });
   };
 
   return (
