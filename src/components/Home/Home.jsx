@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
-import toast from "react-hot-toast";
+
 import { FaDiscord } from "react-icons/fa";
 import TrendingGames from "./TrendingGames";
 import GamerTips from "./GamerTips";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [email, setEmail] = useState("");
 
   const handleSubscribe = () => {
     if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter a valid email",
+        
+      });
       return;
     }
-    toast.success("🎉 Thank you for subscribing to our newsletter!");
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "🎉 Thank you for subscribing!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     setEmail("");
   };
 
@@ -72,11 +85,9 @@ const Home = () => {
 
       {/* NEWS SECTION */}
       <NewsCard />
-      
 
       {/* TIPS SECTION */}
       <GamerTips />
-
 
       {/* EDITOR'S PICKS */}
       <section className="bg-gray-100 py-16 px-6">
