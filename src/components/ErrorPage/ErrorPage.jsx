@@ -17,7 +17,7 @@ export default function ErrorPage() {
         </p>
         <button
           onClick={() => navigate("/")}
-          className="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-md transition"
+          className="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-md transition cursor-pointer"
         >
           Go Home
         </button>

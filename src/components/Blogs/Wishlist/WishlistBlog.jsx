@@ -72,7 +72,7 @@ const WishlistBlog = ({ blog }) => {
         <button
           onClick={handleRemove}
           title="Remove from Wishlist"
-          className="absolute -top-2 -right-3 p-1 rounded-full bg-orange-500 text-white hover:text-white transition"
+          className="absolute -top-2 -right-3 p-1 rounded-full bg-orange-500 text-white hover:text-white transition cursor-pointer"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path

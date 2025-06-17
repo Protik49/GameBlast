@@ -74,7 +74,7 @@ const Home = () => {
               />
               <button
                 onClick={handleSubscribe}
-                className="px-6 py-2 bg-orange-600 hover:bg-orange-700 transition rounded-xl text-white font-semibold"
+                className="px-6 py-2 bg-orange-600 hover:bg-orange-700 transition rounded-xl text-white font-semibold cursor-pointer"
               >
                 Subscribe
               </button>

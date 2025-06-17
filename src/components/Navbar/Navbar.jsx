@@ -110,7 +110,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="text-red-600 hover:text-red-700"
+                    className="text-red-600 hover:text-red-700 cursor-pointer"
                   >
                     Logout
                   </button>

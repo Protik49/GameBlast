@@ -128,7 +128,7 @@ const AddBlog = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-orange-600 text-white font-bold px-10 py-3 rounded-full shadow-md hover:bg-orange-100 hover:text-black hover:scale-105 transition duration-200"
+              className="bg-orange-600 text-white font-bold px-10 py-3 rounded-full shadow-md hover:bg-orange-100 hover:text-black hover:scale-105 transition duration-200 cursor-pointer"
             >
               🚀 Publish Blog
             </button>

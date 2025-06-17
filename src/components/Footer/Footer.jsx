@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  
+    const handleSubscribe = () => {
+      if (!email || !email.includes("@")) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please enter a valid email",
+          
+        });
+        return;
+      }
+  
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "🎉 Thank you for subscribing!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setEmail("");
+    };
   return (
     <footer className="bg-neutral-950 text-neutral-200 px-6 py-14 sm:px-12">
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 md:grid-cols-4">
@@ -79,12 +102,14 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               className="w-full px-4 py-2 rounded-md bg-neutral-800 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
             <button
-             
-              className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white px-4 py-2 rounded-md w-full sm:w-auto"
+              onClick={handleSubscribe}
+              className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white px-4 py-2 rounded-md w-full sm:w-auto "
             >
               Subscribe
             </button>

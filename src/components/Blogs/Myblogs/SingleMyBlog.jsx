@@ -136,7 +136,7 @@ const SingleMyBlog = ({ blog }) => {
         {isOwnBlog && (
           <button
             onClick={() => setShowModal(true)}
-            className="mt-3 ml-5 inline-block bg-orange-500 text-white text-sm px-3 py-1 rounded hover:bg-orange-600 transition"
+            className="mt-3 ml-5 inline-block bg-orange-500 text-white text-sm px-3 py-1 rounded hover:bg-orange-600 transition cursor-pointer"
           >
             Update
           </button>
@@ -214,13 +214,13 @@ const SingleMyBlog = ({ blog }) => {
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 text-sm bg-gray-300 rounded"
+                className="px-4 py-2 text-sm bg-gray-300 rounded cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdateConfirm}
-                className="px-4 py-2 text-sm bg-orange-500 text-white rounded"
+                className="px-4 py-2 text-sm bg-orange-500 text-white rounded  cursor-pointer"
               >
                 Update
               </button>
