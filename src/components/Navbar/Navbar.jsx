@@ -53,7 +53,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">GameBlast</a>
+          <Link to={'/'} className="btn btn-ghost text-xl">GameBlast</Link>
         </div>
 
         {/* Navbar center */}

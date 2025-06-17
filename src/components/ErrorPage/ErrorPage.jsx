@@ -6,7 +6,7 @@ export default function ErrorPage() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 px-4">
       <div className="text-center">
-        <h1 className="text-7xl font-bold text-blue-600 mb-4 animate-bounce">
+        <h1 className="text-7xl font-bold text-orange-600 mb-4 animate-bounce">
           404
         </h1>
         <h2 className="text-2xl md:text-3xl font-semibold mb-2 text-gray-800">
@@ -17,7 +17,7 @@ export default function ErrorPage() {
         </p>
         <button
           onClick={() => navigate("/")}
-          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition"
+          className="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-md transition"
         >
           Go Home
         </button>
