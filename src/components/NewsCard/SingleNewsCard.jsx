@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { Link } from "react-router";
 import { MyContext } from "../../contexts/ContextProvider";
 import Swal from "sweetalert2";
-
 const SingleNewsCard = ({ blog }) => {
   const { user } = useContext(MyContext);
 
@@ -42,6 +41,8 @@ const SingleNewsCard = ({ blog }) => {
         }
       });
   };
+
+  
 
   return (
     <div>
