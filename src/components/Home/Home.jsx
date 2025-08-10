@@ -15,7 +15,6 @@ const Home = () => {
         icon: "error",
         title: "Oops...",
         text: "Please enter a valid email",
-        
       });
       return;
     }
@@ -90,29 +89,62 @@ const Home = () => {
       <GamerTips />
 
       {/* EDITOR'S PICKS */}
-      <section className="bg-gray-100 py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">
+      <section className="relative py-20 px-6 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl font-extrabold text-center mb-4">
             🔥 Editor's Picks
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <p className="text-center text-gray-300 max-w-2xl mx-auto mb-12">
+            Hand-selected stories, deep dives, and hidden gems from across the
+            gaming world — our must-read recommendations for you.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              "Hidden Indie Treasures",
-              "E-Sports Deep Dive",
-              "Narrative Powerhouses",
-            ].map((title, i) => (
+              {
+                title: "Hidden Indie Treasures",
+                tag: "Indie",
+                img: "https://www.mount-it.com/cdn/shop/articles/Matty_--set-up-photos-for-mount--it--2024-10-30-03-50-21--manual.jpg?v=1751392082",
+              },
+              {
+                title: "E-Sports Deep Dive",
+                tag: "Competitive",
+                img: "https://twinkly.com/cdn/shop/articles/Why_Twinkly_LED_lights_are_a_gamer_s_best_bet_bf4521ad-1ae1-44f2-b899-6ee0caeb4b9b.jpg?v=1744961702",
+              },
+              {
+                title: "Narrative Powerhouses",
+                tag: "Storytelling",
+                img: "https://investingnews.com/media-library/person-playing-games-on-a-computer-with-rgb-lighting.jpg?id=28746008&width=1200&height=800&quality=80&coordinates=0%2C0%2C0%2C0",
+              },
+            ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-all"
+                className="group relative bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all"
               >
-                <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                <p>
-                  Carefully curated reads that deserve your time and attention.
-                </p>
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
+                />
+                <div className="p-6">
+                  <span className="text-xs uppercase tracking-wider text-pink-400 font-semibold">
+                    {item.tag}
+                  </span>
+                  <h3 className="text-xl font-bold mt-2 group-hover:text-pink-400 transition">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-gray-300 text-sm">
+                    Carefully curated reads that deserve your time and attention
+                    — dive in and discover something new.
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Optional subtle background pattern */}
+        <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] opacity-10 pointer-events-none"></div>
       </section>
 
       {/* TRENDING GAMES LIST */}
