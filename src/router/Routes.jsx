@@ -13,6 +13,7 @@ import BlogDetail from "../components/Blogs/BlogDetail/BlogDetail";
 import Updateblog from "../components/Blogs/Updateblog/Updateblog";
 import Myblogs from "../components/Blogs/Myblogs/Myblogs";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import ComingSoon from "../components/Footer/ComingSoon";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,13 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {path: '/forums', element: <ComingSoon/>},
+      {path: '/events', element: <ComingSoon/>},
+      {path: '/contributors', element: <ComingSoon/>},
+      {path: '/changelog', element: <ComingSoon/>},
+      {path: '/feedback', element: <ComingSoon/>},
+      {path: '/supportcenter', element: <ComingSoon/>},
+      {path: '/newsletter', element: <ComingSoon/>},
     ],
   },
 ]);

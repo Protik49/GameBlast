@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -41,9 +42,9 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
           <ul className="space-y-2 text-sm text-neutral-400">
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={"/all-blogs"} className="hover:text-white">
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className="hover:text-white">
