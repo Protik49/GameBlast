@@ -152,37 +152,38 @@ const Home = () => {
 
       {/* TESTIMONIALS */}
       <section className="bg-gray-50 py-20 px-6">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-4xl font-extrabold mb-4">🌟 What Our Readers Say</h2>
-    <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-      Hear directly from our passionate community — your feedback keeps us
-      inspired to bring you the best in gaming content.
-    </p>
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-extrabold mb-4">
+            🌟 What Our Readers Say
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+            Hear directly from our passionate community — your feedback keeps us
+            inspired to bring you the best in gaming content.
+          </p>
 
-    <div className="grid md:grid-cols-3 gap-10">
-      {testimonials.map((t, i) => (
-        <div
-          key={i}
-          className="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition-all text-left"
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <img
-              src={`https://i.pravatar.cc/100?img=${i + 1}`}
-              alt={t.name}
-              className="w-12 h-12 rounded-full object-cover"
-            />
-            <div>
-              <h4 className="font-semibold text-lg">{t.name}</h4>
-              <div className="text-yellow-500 text-sm">★★★★★</div>
-            </div>
+          <div className="grid md:grid-cols-3 gap-10">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition-all text-left"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src={`https://i.pravatar.cc/100?img=${i + 1}`}
+                    alt={t.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-lg">{t.name}</h4>
+                    <div className="text-yellow-500 text-sm">★★★★★</div>
+                  </div>
+                </div>
+                <p className="italic text-gray-700">"{t.feedback}"</p>
+              </div>
+            ))}
           </div>
-          <p className="italic text-gray-700">"{t.feedback}"</p>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
+      </section>
 
       {/* DISCORD JOIN SECTION */}
       <section className="bg-indigo-700 py-12 px-6 text-white text-center">
@@ -194,7 +195,8 @@ const Home = () => {
             anyone else!
           </p>
           <a
-            href="https://discord.com/" target="_blank"
+            href="https://discord.com/"
+            target="_blank"
             className="inline-block mt-4 px-6 py-3 bg-white text-indigo-700 font-bold rounded-full hover:bg-gray-100 transition"
           >
             Join Now
