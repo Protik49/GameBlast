@@ -47,19 +47,19 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/newsletter'} className="hover:text-white">
                 Newsletter
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/changelog'} className="hover:text-white">
                 Changelog
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/supportcenter'} className="hover:text-white">
                 Support Center
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -69,24 +69,24 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-white mb-4">Community</h3>
           <ul className="space-y-2 text-sm text-neutral-400">
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/forums'} className="hover:text-white">
                 Forums
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/contributors'} className="hover:text-white">
                 Contributors
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/events'} className="hover:text-white">
                 Events
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to={'/feedback'} className="hover:text-white">
                 Feedback
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
