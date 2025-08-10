@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const trendingGames = [
   "Elden Ring: Shadow of the Erdtree",
@@ -10,53 +10,48 @@ const trendingGames = [
   "Tekken 8 – Season 1 Highlights",
 ];
 
-// Array of colors to cycle through dynamically
-const colors = [
-  "#FF6B6B",
-  "#F7B733",
-  "#4ECDC4",
-  "#556270",
-  "#C7F464",
-  "#FF6B6B",
-];
-
 export default function TrendingGames() {
   const [index, setIndex] = useState(0);
-  const controls = useAnimation();
 
-  useEffect(() => {
-    controls.start({
-      color: colors[index % colors.length],
-      transition: { duration: 1, ease: "easeInOut" },
-      scale: [1, 1.1, 1],
-      transitionEnd: { scale: 1 },
-    });
-  }, [index, controls]);
-
-  // Cycle through trending games every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % trendingGames.length);
-    }, 1500);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="bg-black text-white py-16 px-6">
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-12">🚀 Trending Games</h2>
+    <section className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-16 px-6">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl font-extrabold mb-10">
+          🚀 Trending <span className="text-orange-500">Games</span>
+        </h2>
 
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.8 }}
-          className="text-2xl font-semibold select-none text-orange-500"
-          
-        >
-          {trendingGames[index]}
-        </motion.div>
+        <div className="relative h-12 overflow-hidden flex justify-center items-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -40, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="text-2xl font-bold tracking-wide drop-shadow-[0_0_10px_rgba(255,140,0,0.7)]"
+            >
+              {trendingGames[index]}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="mt-6 flex justify-center gap-2">
+          {trendingGames.map((_, i) => (
+            <div
+              key={i}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === index ? "bg-orange-500 scale-125" : "bg-gray-500"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
