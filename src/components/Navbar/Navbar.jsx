@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router"; // ensure this is react-router-dom
+import { Link, NavLink } from "react-router"; // fixed import
 import { MyContext } from "../../contexts/ContextProvider";
 import { PuffLoader } from "react-spinners";
+import { FiMenu } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = useContext(MyContext);
@@ -10,126 +11,106 @@ const Navbar = () => {
     signOutUser();
   };
 
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/all-blogs", label: "All Blogs" },
+    { to: "/add-blog", label: "Add Blog" },
+    { to: "/featured-blogs", label: "Featured Blogs" },
+    { to: "/wishlist", label: "Wishlist" },
+  ];
+
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
-        {/* Navbar start */}
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <NavLink to={"/"}>Home</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/all-blogs"}>All Blogs</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/add-blog"}>Add Blog</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/featured-blogs"}>Featured Blogs</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/wishlist"}>Wishlist</NavLink>
-              </li>
-            </ul>
-          </div>
-          <Link to={"/"} className="btn btn-ghost text-xl">
+    <nav className="bg-white shadow-md">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold text-orange-500">
             GameBlast
           </Link>
-        </div>
 
-        {/* Navbar center */}
-        <div className="navbar-center font-medium hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <NavLink to={"/"}>Home</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/all-blogs"}>All Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/add-blog"}>Add Blog</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/featured-blogs"}>Featured Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/wishlist"}>Wishlist</NavLink>
-            </li>
-          </ul>
-        </div>
-
-        {/* Navbar end */}
-        <div className="navbar-end">
-          {loading ? (
-            <PuffLoader color="orange" size={40} />
-          ) : user ? (
-            <div className="dropdown dropdown-end">
-              {/* Profile picture as dropdown toggle */}
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full border-2 border-orange-500">
-                  <img src={user?.photoURL} alt="Profile" />
-                </div>
-              </label>
-              {/* Dropdown menu */}
-              <ul
-                tabIndex={0}
-                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-56"
+          {/* Desktop Links */}
+          <div className="hidden lg:flex space-x-6 font-medium">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `hover:text-orange-500 transition ${
+                    isActive ? "text-orange-500 font-semibold" : "text-gray-700"
+                  }`
+                }
               >
-                <li className="cursor-default px-4 py-2">
-                  <div className="font-semibold">
-                    {user?.displayName || "User"}
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+
+          {/* Right Section */}
+          <div className="flex items-center space-x-4">
+            {loading ? (
+              <PuffLoader color="orange" size={40} />
+            ) : user ? (
+              <div className="relative group">
+                <button className="w-10 h-10 rounded-full border-2 border-orange-500 overflow-hidden">
+                  <img src={user?.photoURL} alt="Profile" />
+                </button>
+
+                {/* Dropdown */}
+                <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition">
+                  <div className="px-4 py-2 border-b">
+                    <p className="font-semibold">{user?.displayName || "User"}</p>
+                    <p className="text-xs text-gray-500">{user?.email}</p>
                   </div>
-                  <div className="text-xs opacity-70">{user?.email}</div>
-                </li>
-                <li>
-                  <Link to="/my-blogs" className="justify-between">
+                  <Link to="/my-blogs" className="block px-4 py-2 hover:bg-gray-100">
                     My Blogs
                   </Link>
-                </li>
-                <li>
                   <button
                     onClick={handleLogout}
-                    className="text-red-600 hover:text-red-700 cursor-pointer"
+                    className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
                   >
                     Logout
                   </button>
-                </li>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-3">
+                <Link
+                  to="/login"
+                  className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="text-orange-500 font-semibold hover:underline"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+
+            {/* Mobile Menu */}
+            <div className="lg:hidden dropdown">
+              <label tabIndex={0} className="btn btn-ghost btn-circle">
+                <FiMenu size={22} />
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-white rounded-box w-52"
+              >
+                {navLinks.map((link) => (
+                  <li key={link.to}>
+                    <NavLink to={link.to}>{link.label}</NavLink>
+                  </li>
+                ))}
               </ul>
             </div>
-          ) : (
-            <div className="space-x-4">
-              <Link to={"/login"} className="btn">
-                Login
-              </Link>
-              <Link to={"/signup"} className="text-blue-600">
-                Sign Up
-              </Link>
-            </div>
-          )}
+          </div>
+
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
