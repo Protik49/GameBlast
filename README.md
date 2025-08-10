@@ -1,12 +1,31 @@
-# React + Vite
+# 🎮 GameBlast – Gaming News, Tips & Community Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GameBlast is a modern, fast, and engaging gaming news & community platform built with **React**, **Tailwind CSS**, and **Framer Motion**.  
+It delivers the latest gaming news, rotating tips, trending games, and community feedback in a stylish and responsive interface.
 
-Currently, two official plugins are available:
+**🔗 Live Site:** [https://gameblast.netlify.app/](https://gameblast.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **📰 Latest News Section** – Fetches and displays the most recent blog posts with a clean card layout.
+- **💡 Gamer Tips Carousel** – Auto-rotating gameplay tips with smooth animations.
+- **🚀 Trending Games Spotlight** – Highlighting hot titles with eye-catching transitions.
+- **🌟 Testimonials** – Showcasing feedback from readers in a clean grid.
+- **📱 Responsive Design** – Optimized for mobile, tablet, and desktop.
+- **⚡ Smooth Animations** – Built with Framer Motion for fluid UI transitions.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, Tailwind CSS, Framer Motion
+- **Data Fetching:** Axios
+- **Routing:** React Router
+- **UI Enhancements:** SweetAlert2
+- **Backend API:** [GameBlast Server](https://game-blast-server.vercel.app) (Node.js + Express)
+
+---
+
+
